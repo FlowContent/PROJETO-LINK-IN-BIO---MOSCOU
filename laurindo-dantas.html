@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laurindo Dantas</title>
+  <meta name="description"
+    content="Criador de conteúdo digital do Cerrado goiano. Siga nas redes, fale no WhatsApp e confira o Mídia Kit.">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rye&family=Caveat:wght@600;700&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --dirt-900: #241509;
+      --wood-700: #5b3a24;
+      --wood-600: #6e4a2e;
+      --soy-gold: #e0a53c;
+      --soy-gold-dark: #a9711f;
+      --pasture-600: #5e6b3a;
+      --dust-100: #f2e8d5;
+      --brand-red: #8c3b2e;
+      --ink: #1c1108;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-color: var(--dirt-900);
+      background-image:
+        radial-gradient(circle at 18% 8%, rgba(224, 165, 60, 0.12), transparent 45%),
+        radial-gradient(circle at 85% 92%, rgba(94, 107, 58, 0.18), transparent 50%),
+        linear-gradient(180deg, #2c1a0c 0%, #241509 55%, #1c1108 100%);
+      color: var(--dust-100);
+      font-family: 'Work Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 36px 16px 64px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    /* ---------- Eyebrow ---------- */
+    .eyebrow {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow span {
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--soy-gold);
+      border: 1px solid rgba(224, 165, 60, 0.4);
+      border-radius: 999px;
+      padding: 6px 14px;
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    /* ---------- Hero / avatar seal ---------- */
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 26px;
+      z-index: 1;
+    }
+
+    .side-photo {
+      position: absolute;
+      width: 125px;
+      height: 165px;
+      border-radius: 14px;
+      border: 3px solid var(--soy-gold);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+      z-index: 0;
+      background: var(--wood-700);
+    }
+
+    .side-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      filter: sepia(0.15) contrast(1.05);
+    }
+
+    .side-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      box-shadow: inset 0 0 0 4px rgba(36, 21, 9, 0.3);
+      pointer-events: none;
+    }
+
+    .side-photo.left {
+      top: 39px;
+      left: -15px;
+      transform: rotate(-10deg);
+    }
+
+    .side-photo.right {
+      top: 45px;
+      right: -15px;
+      transform: rotate(12deg);
+    }
+
+    .pinned-photo {
+      position: absolute;
+      top: -18px;
+      right: 6px;
+      width: 92px;
+      transform: rotate(7deg);
+      z-index: 3;
+      filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.45));
+    }
+
+    .pinned-photo img {
+      width: 100%;
+      display: block;
+      border: 6px solid #f6f1e6;
+      border-bottom-width: 18px;
+      box-sizing: border-box;
+    }
+
+    .pinned-photo .pin {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #e8645a, var(--brand-red) 65%);
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .pinned-photo .cap {
+      display: block;
+      margin-top: 4px;
+      font-size: 9px;
+      letter-spacing: .08em;
+      color: var(--dust-100);
+      opacity: .75;
+      transform: rotate(0deg);
+    }
+
+    .avatar-seal {
+      position: relative;
+      width: 188px;
+      height: 188px;
+      margin-bottom: 18px;
+      z-index: 2;
+    }
+
+    .avatar-seal svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .avatar-photo {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--soy-gold);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5), inset 0 0 0 5px rgba(36, 21, 9, 0.55);
+      background: linear-gradient(135deg, var(--wood-600), var(--soy-gold-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-initials {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid var(--soy-gold);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(135deg, #5b3a24, #a9711f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Rye', serif;
+      font-size: 42px;
+      color: var(--dust-100);
+    }
+
+    .name-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .name-row h1 {
+      font-family: 'Rye', serif;
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: .01em;
+      margin: 0;
+      color: var(--dust-100);
+      text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .verified {
+      width: 18px;
+      height: 18px;
+      flex: none;
+      margin-top: 4px;
+    }
+
+    .handle {
+      margin-top: 6px;
+    }
+
+    .handle a {
+      color: var(--soy-gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14.5px;
+      letter-spacing: .02em;
+    }
+
+    .handle a:hover {
+      text-decoration: underline;
+    }
+
+    .stats {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--dust-100);
+      opacity: .82;
+    }
+
+    .stats .sep {
+      color: var(--soy-gold);
+      opacity: .8;
+      font-size: 11px;
+    }
+
+    .stats strong {
+      color: var(--dust-100);
+      opacity: 1;
+      font-weight: 700;
+    }
+
+    .chip-row {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--pasture-600), #4b552e);
+      color: var(--dust-100);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 7px 13px;
+      border-radius: 999px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    /* ---------- Joke note ---------- */
+    .note {
+      position: relative;
+      margin: 24px auto 30px;
+      max-width: 300px;
+      background: var(--dust-100);
+      color: var(--ink);
+      padding: 16px 20px 14px;
+      border-radius: 3px;
+      transform: rotate(-1.4deg);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    .note:before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #d8c7a3, #a08a5c 70%);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+    }
+
+    .note p {
+      margin: 0;
+      font-family: 'Caveat', cursive;
+      font-size: 25px;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .note .stamp {
+      position: absolute;
+      bottom: -10px;
+      right: -14px;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--brand-red);
+      border: 2px solid var(--brand-red);
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transform: rotate(-12deg);
+      opacity: .85;
+      mix-blend-mode: multiply;
+    }
+
+    /* ---------- Section label ---------- */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--soy-gold);
+      opacity: .7;
+      text-align: center;
+      margin: 0 0 14px;
+    }
+
+    /* ---------- Social Grid ---------- */
+    .social-section {
+      margin-top: 8px;
+      margin-bottom: 28px;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .social-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      padding: 16px 8px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(224, 165, 60, 0.18);
+      transition: background .15s, transform .15s;
+      cursor: pointer;
+    }
+
+    .social-card:hover {
+      background: rgba(224, 165, 60, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .ic-instagram {
+      background: rgba(193, 53, 132, 0.2);
+    }
+
+    .ic-whatsapp {
+      background: rgba(37, 211, 102, 0.15);
+    }
+
+    .ic-youtube {
+      background: rgba(255, 0, 0, 0.15);
+    }
+
+    .ic-tiktok {
+      background: rgba(105, 201, 208, 0.15);
+    }
+
+    .ic-kwai {
+      background: rgba(255, 136, 0, 0.15);
+    }
+
+    .ic-email {
+      background: rgba(224, 165, 60, 0.15);
+    }
+
+    .social-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--dust-100);
+      letter-spacing: .02em;
+    }
+
+    .social-handle {
+      font-size: 10px;
+      color: var(--soy-gold);
+      opacity: .8;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* ---------- WhatsApp big button ---------- */
+    .wa-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px 1rem;
+      background: linear-gradient(135deg, var(--soy-gold-dark), var(--soy-gold));
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Work Sans', sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 28px;
+      letter-spacing: .01em;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      transition: filter .15s;
+    }
+
+    .wa-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .wa-btn svg {
+      width: 22px;
+      height: 22px;
+      flex: none;
+      color: black;
+    }
+
+    /* ---------- Mídia Kit ---------- */
+    .mk-toggle-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px 1rem;
+      background: linear-gradient(135deg, var(--soy-gold-dark), var(--soy-gold));
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Work Sans', sans-serif;
+      cursor: pointer;
+      margin-bottom: 16px;
+      letter-spacing: .01em;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: filter .15s;
+    }
+
+    .mk-toggle-btn:hover {
+      filter: brightness(1.08);
+    }
+
+    .mk-toggle-btn svg {
+      width: 20px;
+      height: 20px;
+      flex: none;
+    }
+
+    .mk-chevron {
+      transition: transform .3s;
+    }
+
+    .mk-chevron.open {
+      transform: rotate(180deg);
+    }
+
+
+
+    .mk-panel.open {
+      display: block;
+    }
+
+    .mk-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(224, 165, 60, 0.18);
+    }
+
+    .mk-tab {
+      flex: 1;
+      padding: 12px 4px;
+      background: none;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Work Sans', sans-serif;
+      color: var(--dust-100);
+      opacity: .5;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: opacity .15s, border-color .15s;
+      letter-spacing: .02em;
+    }
+
+    .mk-tab.active {
+      opacity: 1;
+      color: var(--soy-gold);
+      border-bottom-color: var(--soy-gold);
+    }
+
+    .mk-body {
+      padding: 20px 18px;
+    }
+
+
+
+    /* ---------- Footer ---------- */
+    .field-stripe-bottom {
+      height: 14px;
+      margin: 0 -16px 26px;
+      background: repeating-linear-gradient(-35deg,
+          var(--pasture-600) 0 16px,
+          var(--soy-gold-dark) 16px 32px);
+      opacity: .85;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35) inset;
+    }
+
+    footer {
+      text-align: center;
+    }
+
+    .seal-mini {
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      border: 2px solid var(--soy-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Rye', serif;
+      font-size: 18px;
+      color: var(--soy-gold);
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    footer .loc {
+      font-size: 12px;
+      letter-spacing: .06em;
+      color: var(--dust-100);
+      opacity: .65;
+      margin: 0 0 4px;
+    }
+
+    footer .sign {
+      font-size: 11px;
+      color: var(--dust-100);
+      opacity: .45;
+      margin: 0;
+    }
+
+    .sign>a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .sign>a:hover {
+      text-decoration: underline;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--soy-gold);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion:no-preference) {
+      .social-card {
+        opacity: 0;
+        animation: fadeUp .45s ease forwards;
+      }
+
+      .social-card:nth-child(1) {
+        animation-delay: .05s;
+      }
+
+      .social-card:nth-child(2) {
+        animation-delay: .12s;
+      }
+
+      .social-card:nth-child(3) {
+        animation-delay: .19s;
+      }
+
+      .social-card:nth-child(4) {
+        animation-delay: .26s;
+      }
+
+      .social-card:nth-child(5) {
+        animation-delay: .33s;
+      }
+
+      .social-card:nth-child(6) {
+        animation-delay: .40s;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <div class="hero">
+      <div class="pinned-photo">
+      </div>
+
+      <div class="avatar-seal">
+        <svg viewBox="0 0 188 188" aria-hidden="true">
+          <circle cx="94" cy="94" r="92" fill="none" stroke="#e0a53c" stroke-width="1.4" stroke-dasharray="1 5"
+            opacity="0.65" />
+          <circle cx="94" cy="94" r="86" fill="none" stroke="#f2e8d5" stroke-width="1" opacity="0.18" />
+        </svg>
+        <img class="avatar-photo" src="laurindo01.jpeg" alt="Foto de Laurindo Dantas">
+      </div>
+
+      <div class="name-row">
+        <h1>Laurindo Dantas</h1>
+        <svg class="verified" viewBox="0 0 24 24" aria-label="Conta verificada">
+          <path
+            d="M12 2 14.5 4l3.3-.6 1 3.2 3.2 1-.6 3.3 2 2.5-2 2.5.6 3.3-3.2 1-1 3.2-3.3-.6L12 22l-2.5-2-3.3.6-1-3.2-3.2-1 .6-3.3-2-2.5 2-2.5-.6-3.3 3.2-1 1-3.2 3.3.6Z"
+            fill="#e0a53c" />
+          <path d="M8.5 12.3l2.4 2.4 4.8-5.4" stroke="#241509" stroke-width="1.7" fill="none" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <div class="handle">
+        <a href="https://www.instagram.com/olaurindodantas/" target="_blank" rel="noopener">@olaurindodantas</a>
+      </div>
+
+      <div class="stats">
+        <span><strong>+112 mil</strong> seguidores</span>
+        <span class="sep">✶</span>
+        <span><strong>+17M</strong> views/mês</span>
+      </div>
+
+      <div class="chip-row">
+        <span class="chip">Agrordinho Goiano</span>
+        <span class="chip">Criador de conteúdo</span>
+      </div>
+    </div>
+
+    <!-- Mídia Kit -->
+    <a class="mk-toggle-btn" href="segunda-pagina.html" rel="noopener" style="text-decoration:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+        <polyline points="10 9 9 9 8 9" />
+      </svg>
+      Apresentação Comercial
+    </a>
+
+        <!-- WhatsApp CTA -->
+    <a class="wa-btn" href="https://wa.me/5562981949607" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="#fff">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+      </svg>
+      Anunciar comigo
+    </a>
+
+    <!-- Redes Sociais -->
+    <section class="social-section" aria-label="Redes sociais de Laurindo Dantas">
+      <p class="section-label">Siga nas redes</p>
+      <div class="social-grid">
+
+        <a class="social-card" href="https://www.instagram.com/olaurindodantas/" target="_blank" rel="noopener">
+          <div class="social-icon ic-instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="1.8">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4.2" />
+              <circle cx="17.2" cy="6.8" r="1" />
+            </svg>
+          </div>
+          <span class="social-name">Instagram</span>
+          <span class="social-handle">@olaurindodantas</span>
+        </a>
+
+        <a class="social-card" href="https://youtube.com/@olaurindodantas" target="_blank" rel="noopener">
+          <div class="social-icon ic-youtube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="1.8">
+              <rect x="2" y="5" width="20" height="14" rx="4" />
+              <path d="m10 9 5 3-5 3Z" fill="#ff0000" stroke="none" />
+            </svg>
+          </div>
+          <span class="social-name">YouTube</span>
+          <span class="social-handle">@olaurindodantas</span>
+        </a>
+
+        <a class="social-card" href="https://www.tiktok.com/@olaurindodantas" target="_blank" rel="noopener">
+          <div class="social-icon ic-tiktok">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#69c9d0" stroke-width="1.8">
+              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+            </svg>
+          </div>
+          <span class="social-name">TikTok</span>
+          <span class="social-handle">@olaurindodantas</span>
+        </a>
+
+        <a class="social-card" href="https://www.kwai.com/@olaurindodantas" target="_blank" rel="noopener">
+          <div class="social-icon ic-kwai">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ff8800" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="10" width="18" height="11" rx="3.5" />
+              <path d="M5.5 10V8.5a3.5 3.5 0 1 1 7 0V10" />
+              <path d="M14 10V9a2.5 2.5 0 1 1 5 0V10" />
+              <path d="m10 13 5 2.5-5 2.5Z" fill="#ff8800" stroke="none" />
+            </svg>
+          </div>
+          <span class="social-name">Kwai</span>
+          <span class="social-handle">@olaurindodantas</span>
+        </a>
+
+        <a class="social-card" href="https://wa.me/5562981949607" target="_blank" rel="noopener">
+          <div class="social-icon ic-whatsapp">
+            <svg viewBox="0 0 24 24" fill="#25d366">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+            </svg>
+          </div>
+          <span class="social-name">WhatsApp</span>
+          <span class="social-handle">(62) 98194‑9607</span>
+        </a>
+
+        <a class="social-card" href="mailto:olaurindodantas@gmail.com" target="_blank" rel="noopener">
+          <div class="social-icon ic-email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#e0a53c" stroke-width="1.8">
+              <rect x="2" y="4" width="20" height="16" rx="3" />
+              <path d="m2 7 10 7 10-7" />
+            </svg>
+          </div>
+          <span class="social-name">E-mail</span>
+          <span class="social-handle">olaurindodantas@gmail.com</span>
+        </a>
+
+      </div>
+    </section>
+
+
+
+    <footer>
+      <div class="seal-mini">LD</div>
+      <p class="loc">Goiás · Brasil 🇧🇷</p>
+      <p class="sign">Site desenvolvido por <a href="https://www.instagram.com/flowcontentweb/"
+          target="_blank">FlowContent</a></p>
+    </footer>
+
+  </div>
+</body>
+
+</html>
