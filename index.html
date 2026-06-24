@@ -375,7 +375,8 @@
 
     .social-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: 1fr;
       gap: 10px;
     }
 
@@ -449,6 +450,7 @@
       opacity: .8;
       text-align: center;
       line-height: 1.3;
+      word-break: break-all;
     }
 
     /* ---------- WhatsApp big button ---------- */
